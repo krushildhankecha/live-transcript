@@ -9,3 +9,4 @@ whisper
 speechbrain
 torchaudio
 sentencepiece==0.1.99  # Avoid build from source
+speechrecognition
