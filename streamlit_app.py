@@ -1,6 +1,8 @@
 import streamlit as st
 import streamlit.components.v1 as components
 import base64
+import streamlit as st
+import speech_recognition as sr
 
 st.set_page_config(page_title="Voice to Text", layout="centered")
 st.title("🎤 Voice to Text App")
@@ -60,4 +62,34 @@ if st.button("🧠 Generate Transcription"):
         st.markdown("**You said:** Hello, this is a test voice transcription.")
         st.markdown("_(Note: This is placeholder text. Real transcription will be added soon.)_")
 
+
+
+
+st.set_page_config(page_title="Voice Transcriber")
+st.title("🎤 Voice to Text App")
+
+st.markdown("Click the button and start speaking into your mic.")
+
+# Button to start recording
+if st.button("🎙️ Start Recording"):
+    recognizer = sr.Recognizer()
+
+    with sr.Microphone() as source:
+        st.info("Listening... Speak now for 5 seconds.")
+        try:
+            # Adjust for ambient noise and record
+            recognizer.adjust_for_ambient_noise(source)
+            audio = recognizer.listen(source, phrase_time_limit=5)
+            st.success("Recording complete!")
+
+            # Transcribe with Google Speech Recognition
+            st.info("Transcribing...")
+            text = recognizer.recognize_google(audio)
+            st.success("Transcription Complete ✅")
+            st.markdown(f"**You said:** {text}")
+
+        except sr.UnknownValueError:
+            st.error("Could not understand audio.")
+        except sr.RequestError:
+            st.error("API unavailable or network issue.")
 
