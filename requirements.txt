@@ -1,4 +1,10 @@
 streamlit
-SpeechRecognition
-pyaudio
-portaudio
+sounddevice
+scipy
+numpy
+requests
+fastapi
+uvicorn
+whisper
+speechbrain
+torchaudio
