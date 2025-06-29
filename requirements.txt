@@ -5,6 +5,7 @@ numpy
 requests
 fastapi
 uvicorn
+pyaudio
 whisper
 speechbrain
 torchaudio
